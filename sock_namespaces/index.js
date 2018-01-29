@@ -1,1 +1,1 @@
-module.exports = { dispatchNsp: require('./dispatchNsp'), otherNsp: require('./otherNsp') }
+module.exports = { dispatchNsp: require('./dispatchNsp') }

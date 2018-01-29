@@ -6,7 +6,7 @@ const express = require('express'),
       healthcheck = require('./routes/healthcheck'),
       app = express(),
       server = require('http').Server(app),
-      { dispatchNsp, otherNsp } = require('./sock_namespaces'),
+      { dispatchNsp } = require('./sock_namespaces'),
       io = require('socket.io')(server),
       registerSocketNamespace = (nspName, nspCallback) => { io.of(nspName).on('connection', nspCallback) };
 
@@ -17,8 +17,7 @@ app.use(cookieParser());
 
 app.use('/', healthcheck);
 
-registerSocketNamespace('/dispatch', dispatchNsp);
-registerSocketNamespace('/random', otherNsp);
+registerSocketNamespace('dispatch', dispatchNsp);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
